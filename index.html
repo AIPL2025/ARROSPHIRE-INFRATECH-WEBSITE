@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARROSPHIRE INFRATECH PRIVATE LIMITED | Sacred Architecture &amp; Residential Builders</title>
+  <meta name="description" content="ARROSPHIRE INFRATECH PRIVATE LIMITED — Gurudwara &amp; Mandir construction specialists since 1996 and trusted residential builder floors &amp; turnkey home developers in West Delhi since 2007." />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            navy: { 950: '#071529', 900: '#0B1F3A', 800: '#13315C', 700: '#1E467A' },
+            gold: { 500: '#C8922B', 600: '#B07D1E', 100: '#FDF6E7' }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden max-w-sm rounded-xl bg-navy-900 px-5 py-3.5 text-sm font-medium text-white shadow-xl border border-gold-500/40"></div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 p-4" role="dialog" aria-modal="true">
+    <button id="lightboxClose" type="button" class="absolute top-4 right-4 rounded-full bg-white/15 px-3.5 py-1.5 text-sm font-semibold text-white hover:bg-white/25 transition">Close ✕</button>
+    <div class="max-w-4xl w-full text-center">
+      <img id="lightboxImg" src="" alt="Project Preview" class="mx-auto max-h-[80vh] w-auto rounded-xl shadow-2xl object-contain" />
+      <p id="lightboxCaption" class="mt-3 text-sm font-medium text-slate-200"></p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#top" class="flex items-center gap-3">
+        <!-- Custom SVG Emblem inspired by Arrosphire Logo -->
+        <svg class="h-10 w-10 shrink-0" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" stroke="#0B1F3A" stroke-width="3.5" stroke-dasharray="140 28" />
+          <path d="M16 49L30 13H35L49 49H41L37.5 39H27.5L24 49H16ZM29.5 33H35.5L32.5 23.5L29.5 33Z" fill="#0B1F3A" />
+          <path d="M38 11A22 22 0 0 1 52 24" stroke="#C8922B" stroke-width="3.5" stroke-linecap="round" />
+          <circle cx="43" cy="45" r="4.5" fill="#C8922B" />
+        </svg>
+        <div class="leading-tight">
+          <span class="block text-sm sm:text-base font-extrabold tracking-tight text-navy-900">ARROSPHIRE INFRATECH</span>
+          <span class="block text-[11px] font-semibold tracking-wider text-gold-600 uppercase">Private Limited</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-navy-900 transition">About</a>
+        <a href="#services" class="hover:text-navy-900 transition">Services</a>
+        <a href="#projects" class="hover:text-navy-900 transition">Projects</a>
+        <a href="#finder" class="hover:text-navy-900 transition">Requirement Finder</a>
+        <a href="#contact" class="hover:text-navy-900 transition">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2.5">
+        <a href="https://wa.me/919910962033" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition">
+          WhatsApp
+        </a>
+        <a href="tel:+919910962033" class="inline-flex items-center rounded-lg bg-navy-900 px-3.5 py-2 text-xs font-semibold text-white hover:bg-navy-800 transition">
+          +91 9910962033
+        </a>
+        <button id="mobileMenuBtn" type="button" class="md:hidden rounded-lg border border-slate-200 p-2 text-slate-700 hover:bg-slate-100" aria-label="Toggle Menu">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Nav -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-2 text-sm font-medium text-slate-700">
+      <a href="#about" class="block py-1.5 hover:text-navy-900">About &amp; Credentials</a>
+      <a href="#services" class="block py-1.5 hover:text-navy-900">Services</a>
+      <a href="#projects" class="block py-1.5 hover:text-navy-900">Projects &amp; Gallery</a>
+      <a href="#finder" class="block py-1.5 hover:text-navy-900">Requirement Finder</a>
+      <a href="#contact" class="block py-1.5 hover:text-navy-900">Enquiry &amp; Feedback</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="top" class="relative bg-navy-950 text-white overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex flex-wrap items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-gold-100 border border-gold-500/30">
+            <span>Sacred Architecture Since 1996</span>
+            <span class="text-gold-500">•</span>
+            <span>Residential Builders Since 2007</span>
+          </div>
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            Building <span class="text-gold-500">Sacred Landmarks</span> &amp; Modern <span class="text-gold-500">Homes</span> With Trust.
+          </h1>
+          <p class="max-w-2xl text-base sm:text-lg text-slate-300 leading-relaxed">
+            <strong>ARROSPHIRE INFRATECH PRIVATE LIMITED</strong> brings nearly three decades of heritage Gurudwara &amp; Mandir construction mastery alongside ready-to-move builder floors, turnkey home construction, and property advisory across West Delhi.
+          </p>
+          <div class="flex flex-wrap gap-3 pt-1">
+            <a href="#finder" class="rounded-xl bg-gold-500 px-6 py-3 text-sm font-bold text-navy-950 hover:bg-gold-600 hover:text-white transition shadow-lg">
+              Analyze Your Requirement
+            </a>
+            <a href="#projects" class="rounded-xl border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/15 transition">
+              View 66+ Completed Works
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 grid grid-cols-2 gap-3">
+          <div class="self-start overflow-hidden rounded-2xl border border-white/10 shadow-xl">
+            <img src="./assets/guru-dera-gate.jpg" alt="Gurudwara Dera Baba Jodh Sachiyar" class="h-44 sm:h-52 w-full object-cover" />
+          </div>
+          <div class="self-start overflow-hidden rounded-2xl border border-white/10 shadow-xl mt-6">
+            <img src="./assets/res-elevation-1.jpg" alt="Modern Residential Builder Floor" class="h-44 sm:h-52 w-full object-cover" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Metrics -->
+      <div class="mt-12 grid grid-cols-2 gap-4 border-t border-white/15 pt-8 sm:grid-cols-4">
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-gold-500">66+</p>
+          <p class="mt-1 text-xs sm:text-sm text-slate-300">Gurudwara, Mandir &amp; Ashram Projects (Since 1996)</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-gold-500">100+</p>
+          <p class="mt-1 text-xs sm:text-sm text-slate-300">Residential Clients Served (Since 2007)</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-gold-500">2012 Award</p>
+          <p class="mt-1 text-xs sm:text-sm text-slate-300">Best Gumbad Specialization (Dera Baba Jodh Sachiyar)</p>
+        </div>
+        <div>
+          <p class="text-2xl sm:text-3xl font-extrabold text-gold-500">25–100</p>
+          <p class="mt-1 text-xs sm:text-sm text-slate-300">Sq. Yards 1–4 BHK Floors &amp; Independent Homes</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About, Legacy & Corporate Credentials -->
+  <section id="about" class="py-16 bg-white border-b border-slate-200">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-7 space-y-5">
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-600">Our Legacy &amp; Leadership</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900">Multi-Generational Craftsmanship Meets Corporate Execution</h2>
+          <p class="text-slate-600 leading-relaxed">
+            Carrying forward an ancestral legacy in sacred architecture, Director <strong>Nagender Singh Yadav</strong> has been actively building Gurudwaras and Mandirs since <strong>1996</strong>—completing over 66 landmark religious structures across Delhi, Haryana, Rajasthan, Uttar Pradesh, Punjab, and Uttarakhand.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            In <strong>2007</strong>, he expanded into residential real estate and turnkey home development across <strong>Uttam Nagar, Mohan Garden, Dwarka Mor, and Dwarka</strong> (10 km radius), serving <strong>100+ families</strong> with transparent collaboration, sale/purchase, and contract home construction. Today, <strong>ARROSPHIRE INFRATECH PRIVATE LIMITED</strong> unifies both divisions under one registered corporate entity.
+          </p>
+
+          <div class="rounded-2xl bg-gold-100 border border-gold-500/30 p-4 flex items-start gap-3">
+            <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gold-500 text-white font-bold">★</div>
+            <div>
+              <h3 class="text-sm font-bold text-navy-900">Awarded for Best Gumbad Specialization (2012)</h3>
+              <p class="text-xs sm:text-sm text-slate-700 mt-0.5">Honored by Gurudwara Dera Baba Jodh Sachiyar (Panipat) in 2012 for excellence in dome (Gumbad) architecture, carving, and craftsmanship.</p>
+            </div>
+          </div>
+
+          <!-- Directors -->
+          <div class="grid gap-4 sm:grid-cols-2 pt-2">
+            <div class="flex items-center gap-3.5 rounded-xl border border-slate-200 p-3.5 bg-slate-50">
+              <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-navy-900 text-gold-500 font-bold text-lg">NSY</div>
+              <div>
+                <h4 class="text-sm font-bold text-navy-900">Nagender Singh Yadav</h4>
+                <p class="text-xs font-medium text-gold-600">Director</p>
+                <p class="text-xs text-slate-500 mt-0.5">Sacred Architecture (Since 1996) &amp; Builder/Developer (Since 2007)</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3.5 rounded-xl border border-slate-200 p-3.5 bg-slate-50">
+              <img src="./assets/director-gyanti.jpg" alt="Gyanti Yadav - Director" class="h-14 w-14 shrink-0 rounded-full object-cover border border-slate-300" />
+              <div>
+                <h4 class="text-sm font-bold text-navy-900">Gyanti Yadav</h4>
+                <p class="text-xs font-medium text-gold-600">Director</p>
+                <p class="text-xs text-slate-500 mt-0.5">Corporate Operations &amp; Administration</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corporate Credentials Box -->
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl bg-navy-900 text-white p-6 sm:p-7 shadow-xl">
+            <h3 class="text-lg font-bold text-gold-500">Registered Company Profile</h3>
+            <p class="text-xs text-slate-300 mt-1">Verified statutory &amp; corporate registration details</p>
+            <dl class="mt-5 space-y-3 text-sm divide-y divide-white/10">
+              <div class="flex justify-between gap-4 pt-2">
+                <dt class="text-slate-400">Legal Name</dt>
+                <dd class="font-semibold text-right">ARROSPHIRE INFRATECH PRIVATE LIMITED</dd>
+              </div>
+              <div class="flex justify-between gap-4 pt-2">
+                <dt class="text-slate-400">CIN</dt>
+                <dd class="font-mono text-xs sm:text-sm font-semibold">U46630DL2025PTC456679</dd>
+              </div>
+              <div class="flex justify-between gap-4 pt-2">
+                <dt class="text-slate-400">GSTIN</dt>
+                <dd class="font-mono text-xs sm:text-sm font-semibold">07ABDCA9471A1ZU</dd>
+              </div>
+              <div class="flex justify-between gap-4 pt-2">
+                <dt class="text-slate-400">ESIC Code</dt>
+                <dd class="font-mono text-xs sm:text-sm font-semibold">22001651040000999</dd>
+              </div>
+              <div class="flex justify-between gap-4 pt-2">
+                <dt class="text-slate-400">Authorised Capital</dt>
+                <dd class="font-semibold">₹1,00,000.00</dd>
+              </div>
+              <div class="flex justify-between gap-4 pt-2">
+                <dt class="text-slate-400">Paid-up Capital</dt>
+                <dd class="font-semibold">₹1,00,000.00</dd>
+              </div>
+              <div class="pt-2">
+                <dt class="text-slate-400 text-xs mb-1">Registered Office</dt>
+                <dd class="text-xs text-slate-200 leading-relaxed">B-9, Third Floor, Front Side, B-Block, Mohan Garden Extension, Uttam Nagar, PO: DK Mohan Garden, West Delhi, New Delhi - 110059</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Services -->
+  <section id="services" class="py-16 bg-slate-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-gold-600">What We Do</span>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-navy-900">Two Specialized Divisions Under One Roof</h2>
+      </div>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <!-- Division 1 -->
+        <div class="rounded-2xl bg-white p-6 sm:p-8 border border-slate-200 shadow-sm">
+          <div class="inline-flex rounded-lg bg-navy-900 px-3 py-1 text-xs font-semibold text-gold-500">Division 01 • Since 1996</div>
+          <h3 class="mt-4 text-xl font-bold text-navy-900">Gurudwara &amp; Mandir Construction</h3>
+          <p class="mt-2 text-sm text-slate-600">End-to-end religious architecture and structural contracting across Delhi NCR and North India, available on both <strong>Labour Rate</strong> and <strong>With Material</strong> basis.</p>
+          <ul class="mt-5 space-y-2.5 text-sm text-slate-700">
+            <li class="flex items-start gap-2"><span class="text-gold-600 font-bold">✓</span> <span><strong>Gumbad (Main Domes)</strong>, Palki, Half Palki &amp; Bukharcha (Chhatri)</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold-600 font-bold">✓</span> <span><strong>Marble &amp; Tile Fixing</strong> with intricate inlay &amp; arch carving</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold-600 font-bold">✓</span> <span><strong>Darbar Hall &amp; Exterior Facade</strong> construction</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold-600 font-bold">✓</span> <span><strong>Project Advisory</strong> &amp; structural planning for committees</span></li>
+          </ul>
+        </div>
+
+        <!-- Division 2 -->
+        <div class="rounded-2xl bg-white p-6 sm:p-8 border border-slate-200 shadow-sm">
+          <div class="inline-flex rounded-lg bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-600">Division 02 • Since 2007</div>
+          <h3 class="mt-4 text-xl font-bold text-navy-900">Residential Builder, Floors &amp; Turnkey Homes</h3>
+          <p class="mt-2 text-sm text-slate-600">Trusted development in <strong>Uttam Nagar, Mohan Garden, Dwarka Mor &amp; Dwarka</strong> (10 km radius) with 100+ happy homeowners.</p>
+          <ul class="mt-5 space-y-2.5 text-sm text-slate-700">
+            <li class="flex items-start gap-2"><span class="text-gold-600 font-bold">✓</span> <span><strong>1 BHK, 2 BHK, 3 BHK &amp; 4 BHK</strong> Builder Floors &amp; Ready-to-Move Houses (25–100 sq. yards)</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold-600 font-bold">✓</span> <span><strong>Upcoming Projects:</strong> 31, 35, 45, 47, 50 &amp; 70 sq. yards options</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold-600 font-bold">✓</span> <span><strong>Sale/Purchase, Collaboration</strong> &amp; With-Material Home Handover</span></li>
+            <li class="flex items-start gap-2"><span class="text-gold-600 font-bold">✓</span> <span><strong>Budget-Friendly Homes, Booking Options, Loan Assistance</strong> &amp; Investment Advice</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Gallery & 66+ Heritage Directory -->
+  <section id="projects" class="py-16 bg-white border-y border-slate-200">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-gold-600">Portfolio</span>
+          <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold text-navy-900">Site Gallery &amp; Completed Works</h2>
+        </div>
+        <div class="flex flex-wrap gap-2" id="galleryFilters">
+          <button type="button" data-filter="all" class="gallery-tab rounded-lg bg-navy-900 px-3.5 py-2 text-xs font-semibold text-white">All Photos</button>
+          <button type="button" data-filter="sacred" class="gallery-tab rounded-lg bg-slate-100 px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-200">Gurudwara &amp; Mandir</button>
+          <button type="button" data-filter="residential" class="gallery-tab rounded-lg bg-slate-100 px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-200">Residential &amp; Interiors</button>
+        </div>
+      </div>
+
+      <!-- Photo Grid -->
+      <div id="photoGrid" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+
+      <!-- 66 Completed Landmarks Directory -->
+      <div class="mt-16 rounded-2xl bg-slate-50 border border-slate-200 p-6 sm:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div>
+            <h3 class="text-xl font-bold text-navy-900">66+ Completed Gurudwara, Mandir &amp; Ashram Projects</h3>
+            <p class="text-sm text-slate-600 mt-1">Search or filter our historical project record across North India.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <input id="projectSearch" type="text" placeholder="Search city or Gurudwara..." class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-sm focus:border-navy-900 focus:outline-none" />
+            <select id="stateFilter" class="rounded-lg border border-slate-300 bg-white px-3.5 py-2 text-sm focus:border-navy-900 focus:outline-none">
+              <option value="all">All States (66)</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+            </select>
+          </div>
+        </div>
+        <div id="landmarkCount" class="mt-4 text-xs font-semibold text-gold-600">Showing 66 projects</div>
+        <div id="landmarkList" class="mt-3 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3 max-h-96 overflow-y-auto pr-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Client Requirement Analysis / Finder -->
+  <section id="finder" class="py-16 bg-navy-950 text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-gold-500">Smart Requirement Analysis</span>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold">Tell Us What You Need — Get Instant Guidance</h2>
+        <p class="mt-2 text-sm text-slate-300">Select your preferences below to analyze your requirement and send it directly to our team.</p>
+      </div>
+
+      <div class="mt-8 grid gap-8 lg:grid-cols-12">
+        <div class="lg:col-span-7 rounded-2xl bg-white/5 border border-white/10 p-6 space-y-5">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="reqType" class="block text-xs font-semibold text-slate-300 mb-1.5">Requirement Type</label>
+              <select id="reqType" class="w-full rounded-lg bg-navy-900 border border-white/20 px-3.5 py-2.5 text-sm text-white focus:border-gold-500 focus:outline-none">
+                <option value="Builder Floor (Flat)">Builder Floor (1–4 BHK Flat)</option>
+                <option value="Independent House (Jad se Makan)">Independent House (Jad se Makan)</option>
+                <option value="With-Material Home Construction">With-Material Home Construction / Collaboration</option>
+                <option value="Gurudwara / Mandir Construction">Gurudwara / Mandir / Gumbad Work</option>
+                <option value="Property Investment Advice">Property Investment Advice</option>
+              </select>
+            </div>
+            <div>
+              <label for="reqLocation" class="block text-xs font-semibold text-slate-300 mb-1.5">Preferred Location</label>
+              <select id="reqLocation" class="w-full rounded-lg bg-navy-900 border border-white/20 px-3.5 py-2.5 text-sm text-white focus:border-gold-500 focus:outline-none">
+                <option value="Uttam Nagar">Uttam Nagar</option>
+                <option value="Mohan Garden">Mohan Garden</option>
+                <option value="Dwarka Mor">Dwarka Mor</option>
+                <option value="Dwarka">Dwarka</option>
+                <option value="Other Delhi NCR / Outstation">Other Delhi NCR / Outstation</option>
+              </select>
+            </div>
+            <div>
+              <label for="reqSize" class="block text-xs font-semibold text-slate-300 mb-1.5">Size / Configuration</label>
+              <select id="reqSize" class="w-full rounded-lg bg-navy-900 border border-white/20 px-3.5 py-2.5 text-sm text-white focus:border-gold-500 focus:outline-none">
+                <option value="1 BHK (25–35 Sq. Yards)">1 BHK (25–35 Sq. Yards)</option>
+                <option value="2 BHK (45–50 Sq. Yards)">2 BHK (45–50 Sq. Yards)</option>
+                <option value="3 BHK (70–85 Sq. Yards)">3 BHK (70–85 Sq. Yards)</option>
+                <option value="4 BHK (100 Sq. Yards)">4 BHK (100 Sq. Yards)</option>
+                <option value="Upcoming Plot (31/35/45/47/50/70 Sq. Yd)">Upcoming Plot (31/35/45/47/50/70 Sq. Yd)</option>
+                <option value="Custom Project / Sacred Work">Custom Project / Sacred Work</option>
+              </select>
+            </div>
+            <div>
+              <label for="reqStatus" class="block text-xs font-semibold text-slate-300 mb-1.5">Possession &amp; Budget</label>
+              <select id="reqStatus" class="w-full rounded-lg bg-navy-900 border border-white/20 px-3.5 py-2.5 text-sm text-white focus:border-gold-500 focus:outline-none">
+                <option value="Ready to Move • Budget Friendly">Ready to Move • Budget Friendly</option>
+                <option value="Booking / Upcoming Project">Booking / Upcoming Project</option>
+                <option value="Ready to Move + Home Loan Required">Ready to Move + Home Loan Required</option>
+                <option value="Labour Rate / With-Material Contract">Labour Rate / With-Material Contract</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="reqBudget" class="block text-xs font-semibold text-slate-300 mb-1.5">Estimated Budget Range (Optional)</label>
+            <input id="reqBudget" type="text" placeholder="e.g., ₹25 Lakh – ₹45 Lakh or Custom" class="w-full rounded-lg bg-navy-900 border border-white/20 px-3.5 py-2.5 text-sm text-white placeholder-slate-400 focus:border-gold-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <!-- Live Analysis Output -->
+        <div class="lg:col-span-5 rounded-2xl bg-white text-slate-800 p-6 shadow-xl flex flex-col justify-between">
+          <div>
+            <span class="inline-block rounded-md bg-gold-100 px-2.5 py-1 text-xs font-bold text-gold-600">Your Requirement Summary</span>
+            <h3 id="analysisTitle" class="mt-3 text-lg font-extrabold text-navy-900">Builder Floor (Flat) in Uttam Nagar</h3>
+            <p id="analysisDesc" class="mt-2 text-sm text-slate-600 leading-relaxed"></p>
+            <div class="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-3.5 text-xs text-slate-700 space-y-1">
+              <p><strong>Included Support:</strong> Site visit scheduling, budget-friendly matching, booking amount flexibility &amp; Home Loan facility assistance.</p>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-col sm:flex-row gap-2.5">
+            <a id="waAnalysisBtn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center rounded-xl bg-emerald-600 px-4 py-3 text-sm font-bold text-white hover:bg-emerald-700 transition">
+              Send on WhatsApp
+            </a>
+            <button id="fillEnquiryBtn" type="button" class="flex-1 rounded-xl bg-navy-900 px-4 py-3 text-sm font-bold text-white hover:bg-navy-800 transition">
+              Fill Enquiry Form
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enquiry, Feedback & Office Location -->
+  <section id="contact" class="py-16 bg-slate-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-12">
+        <!-- Forms (Enquiry + Feedback Tabs) -->
+        <div class="lg:col-span-7 rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 shadow-sm">
+          <div class="flex gap-2 border-b border-slate-200 pb-4">
+            <button id="tabEnquiry" type="button" class="rounded-lg bg-navy-900 px-4 py-2 text-sm font-semibold text-white">Enquiry Form</button>
+            <button id="tabFeedback" type="button" class="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-200">Client Feedback</button>
+          </div>
+
+          <!-- Enquiry Form -->
+          <form id="enquiryForm" class="mt-6 space-y-4">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="enqName" class="block text-xs font-semibold text-slate-700 mb-1">Your Name *</label>
+                <input id="enqName" type="text" required placeholder="Full Name" class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-900 focus:outline-none" />
+              </div>
+              <div>
+                <label for="enqPhone" class="block text-xs font-semibold text-slate-700 mb-1">Phone / WhatsApp *</label>
+                <input id="enqPhone" type="tel" required placeholder="10-digit mobile number" class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-900 focus:outline-none" />
+              </div>
+            </div>
+            <div>
+              <label for="enqSubject" class="block text-xs font-semibold text-slate-700 mb-1">Requirement / Subject *</label>
+              <input id="enqSubject" type="text" required placeholder="e.g., 2 BHK Builder Floor in Mohan Garden / Gurudwara Gumbad Work" class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-900 focus:outline-none" />
+            </div>
+            <div>
+              <label for="enqMsg" class="block text-xs font-semibold text-slate-700 mb-1">Details / Message</label>
+              <textarea id="enqMsg" rows="4" placeholder="Share your budget, plot size, or project details..." class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-900 focus:outline-none"></textarea>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <button type="submit" class="rounded-xl bg-navy-900 px-6 py-3 text-sm font-bold text-white hover:bg-navy-800 transition">Submit via WhatsApp</button>
+              <button id="emailEnquiryBtn" type="button" class="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100 transition">Send via Email</button>
+            </div>
+          </form>
+
+          <!-- Feedback Form -->
+          <form id="feedbackForm" class="mt-6 space-y-4 hidden">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="fbName" class="block text-xs font-semibold text-slate-700 mb-1">Client / Committee Name *</label>
+                <input id="fbName" type="text" required placeholder="Your Name" class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-900 focus:outline-none" />
+              </div>
+              <div>
+                <label for="fbRating" class="block text-xs font-semibold text-slate-700 mb-1">Rating</label>
+                <select id="fbRating" class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-900 focus:outline-none">
+                  <option value="5">★★★★★ (5/5 Excellent)</option>
+                  <option value="4">★★★★☆ (4/5 Very Good)</option>
+                  <option value="3">★★★☆☆ (3/5 Good)</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="fbProject" class="block text-xs font-semibold text-slate-700 mb-1">Project / Service Taken</label>
+              <input id="fbProject" type="text" placeholder="e.g., 3 BHK Floor Uttam Nagar / Gurudwara Dome Work" class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-900 focus:outline-none" />
+            </div>
+            <div>
+              <label for="fbMsg" class="block text-xs font-semibold text-slate-700 mb-1">Your Feedback *</label>
+              <textarea id="fbMsg" rows="3" required placeholder="Share your experience working with Arrosphire Infratech..." class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm focus:border-navy-900 focus:outline-none"></textarea>
+            </div>
+            <button type="submit" class="rounded-xl bg-gold-500 px-6 py-3 text-sm font-bold text-navy-950 hover:bg-gold-600 hover:text-white transition">Post Feedback</button>
+
+            <div id="feedbackList" class="mt-6 space-y-3 border-t border-slate-200 pt-4"></div>
+          </form>
+        </div>
+
+        <!-- Contact & Office Location Card -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="rounded-2xl bg-white border border-slate-200 p-6 sm:p-7 shadow-sm space-y-4">
+            <h3 class="text-lg font-bold text-navy-900">Contact &amp; Office Location</h3>
+            <div class="space-y-3 text-sm text-slate-600">
+              <div>
+                <p class="text-xs font-semibold uppercase text-slate-400">Office Address</p>
+                <p class="mt-0.5 font-medium text-slate-800">B-9, Third Floor, Front Side, B-Block, Mohan Garden Extension, Uttam Nagar, New Delhi - 110059</p>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase text-slate-400">Phone &amp; WhatsApp</p>
+                <a href="tel:+919910962033" class="mt-0.5 block font-bold text-navy-900 hover:text-gold-600">+91 9910962033</a>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase text-slate-400">Official Email</p>
+                <a href="mailto:arrosphireinfratechpvtltd1980@gmail.com" class="mt-0.5 block font-medium text-navy-900 break-all hover:text-gold-600">arrosphireinfratechpvtltd1980@gmail.com</a>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase text-slate-400">Instagram</p>
+                <a href="https://www.instagram.com/arrosphire.1010/" target="_blank" rel="noopener noreferrer" class="mt-0.5 inline-flex items-center gap-1.5 font-semibold text-pink-600 hover:underline">@arrosphire.1010</a>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <div class="rounded-xl bg-slate-100 border border-slate-200 p-4 text-center">
+                <p class="text-xs font-semibold text-slate-600">Mohan Garden Extension, Uttam Nagar, New Delhi</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">Coordinates: 28.603649, 77.039558</p>
+                <a href="https://maps.app.goo.gl/HUdsu6EAaeJgoZ286" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-navy-900 px-4 py-2.5 text-xs font-bold text-white hover:bg-navy-800 transition w-full">
+                  Open Exact Location in Google Maps ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-navy-950 text-slate-400 py-8 border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <p>© 2026 <strong class="text-white">ARROSPHIRE INFRATECH PRIVATE LIMITED</strong>. CIN: U46630DL2025PTC456679 | GSTIN: 07ABDCA9471A1ZU</p>
+      <div class="flex gap-4">
+        <a href="https://www.instagram.com/arrosphire.1010/" target="_blank" rel="noopener noreferrer" class="hover:text-white">Instagram</a>
+        <a href="https://wa.me/919910962033" target="_blank" rel="noopener noreferrer" class="hover:text-white">WhatsApp</a>
+        <a href="https://maps.app.goo.gl/HUdsu6EAaeJgoZ286" target="_blank" rel="noopener noreferrer" class="hover:text-white">Google Maps</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const PHOTOS = [
+      { src: "./assets/guru-dera-gate.jpg", cat: "sacred", title: "Dera Baba Jodh Sachiyar (Panipat, Haryana)" },
+      { src: "./assets/guru-marble-facade.jpg", cat: "sacred", title: "Grand White Marble Gurudwara &amp; Domes" },
+      { src: "./assets/guru-janakpuri.jpg", cat: "sacred", title: "Gurudwara Sri Guru Singh Sabha, A-2 Block Janakpuri, Delhi" },
+      { src: "./assets/guru-sukhdham.jpg", cat: "sacred", title: "Gurudwara Shah Ji Maharaj Sukhdham, Alwar, Rajasthan" },
+      { src: "./assets/guru-darbar-hall.jpg", cat: "sacred", title: "Darbar Hall Interior &amp; Marble Palki" },
+      { src: "./assets/guru-dome-red.jpg", cat: "sacred", title: "Handcrafted Red &amp; Gold Interior Dome" },
+      { src: "./assets/guru-dome-blue.jpg", cat: "sacred", title: "Royal Blue &amp; Gold Ceiling Dome Work" },
+      { src: "./assets/mandir-ravidas.jpg", cat: "sacred", title: "Shri Guru Ravi Das Mandir, K-Block Mangolpuri, Delhi" },
+      { src: "./assets/guru-chhatri-carving.jpg", cat: "sacred", title: "Hand-Carved Bukharcha / Chhatri Craftsmanship" },
+      { src: "./assets/guru-r-block.jpg", cat: "sacred", title: "Gurudwara Sri Guru Singh Sabha, R-Block" },
+      { src: "./assets/guru-inlay-arch.jpg", cat: "sacred", title: "Intricate Marble Inlay Archway" },
+      { src: "./assets/res-elevation-1.jpg", cat: "residential", title: "Modern Residential Builder Floor Elevation" },
+      { src: "./assets/res-elevation-2.jpg", cat: "residential", title: "Contemporary Front Elevation with Wooden Louvers" },
+      { src: "./assets/res-kitchen-1.jpg", cat: "residential", title: "Modular Kitchen with Profile Lighting" },
+      { src: "./assets/res-living-1.jpg", cat: "residential", title: "Living Room with Custom TV Unit &amp; Cove Ceiling" },
+      { src: "./assets/res-ceiling-1.jpg", cat: "residential", title: "Modern Geometric False Ceiling &amp; Lighting" },
+      { src: "./assets/res-room-1.jpg", cat: "residential", title: "Finished Bedroom with Designer Wallpaper" },
+      { src: "./assets/res-ceiling-2.jpg", cat: "residential", title: "Custom POP False Ceiling Work" }
+    ];
+
+    const LANDMARKS = [
+      { id: 1, name: "Gurudwara Sri Guru Singh Sabha, Bada Wala, Gurgaon", state: "Haryana" },
+      { id: 2, name: "Gurudwara Sri Guru Singh Sabha, Naraina Vihar", state: "Delhi" },
+      { id: 3, name: "Gurudwara Sri Guru Singh Sabha, Inderpuri", state: "Delhi" },
+      { id: 4, name: "Gurudwara Sri Guru Singh Sabha, Old Rajendra Nagar", state: "Delhi" },
+      { id: 5, name: "Gurudwara Nanak Darbar, New Rajendra Nagar", state: "Delhi" },
+      { id: 6, name: "Gurudwara Sri Guru Singh Sabha, Moti Nagar", state: "Delhi" },
+      { id: 7, name: "Gurudwara Sri Guru Singh Sabha, Multan Nagar", state: "Delhi" },
+      { id: 8, name: "Gurudwara Sri Guru Singh Sabha, Fateh Nagar", state: "Delhi" },
+      { id: 9, name: "Gurudwara Sri Guru Singh Sabha, L-Block, Fateh Nagar", state: "Delhi" },
+      { id: 10, name: "Dera Baba Jodh Sachiyar, Panipat", state: "Haryana" },
+      { id: 11, name: "Gurudwara Sri Guru Singh Sabha, Sector-12, Panipat", state: "Haryana" },
+      { id: 12, name: "Gurudwara Sri Guru Singh Sabha, Jullapur Village, Panipat", state: "Haryana" },
+      { id: 13, name: "Gurudwara Sri Guru Singh Sabha, Bali Nagar", state: "Delhi" },
+      { id: 14, name: "Baba Budha Sahib Gurudwara, Subhash Nagar", state: "Delhi" },
+      { id: 15, name: "Dera Baba Deep Singh Ji, Malviya Nagar", state: "Delhi" },
+      { id: 16, name: "Dera Baba Karam Singh Ji, Rashid Market", state: "Delhi" },
+      { id: 17, name: "Dera Baba Sant Maharaj Harnam Singh, Sahibpura", state: "Delhi" },
+      { id: 18, name: "Makhan Sahib Lubana Gurudwara, Raghubir Nagar", state: "Delhi" },
+      { id: 19, name: "Gurudwara Sri Guru Singh Sabha, Sahibpura, Gali No. 5", state: "Delhi" },
+      { id: 20, name: "Gurudwara Sri Guru Singh Sabha, Vishnu Garden", state: "Delhi" },
+      { id: 21, name: "Gurudwara Sri Guru Singh Sabha, Narsingh Garden", state: "Delhi" },
+      { id: 22, name: "Ramgarhia Gurudwara, Chand Nagar", state: "Delhi" },
+      { id: 23, name: "Guru Nanak Darbar (Kabli Gurudwara), Vikaspuri", state: "Delhi" },
+      { id: 24, name: "Gurudwara Arjan Dev Ji (Kabli), K-Block Mahavir Nagar", state: "Delhi" },
+      { id: 25, name: "Sheesh Mahal Gurudwara (Kabli), Kakrola Mor", state: "Delhi" },
+      { id: 26, name: "Kandhari Gurudwara, Tilak Nagar", state: "Delhi" },
+      { id: 27, name: "Gurudwara Sri Guru Singh Sabha, Sadh Nagar - Palam", state: "Delhi" },
+      { id: 28, name: "Gurudwara Sri Guru Singh Sabha, Sudarshan Park", state: "Delhi" },
+      { id: 29, name: "Gurudwara Sri Guru Singh Sabha, Sarojini Nagar", state: "Delhi" },
+      { id: 30, name: "Guru Nanak Sabha, R.K. Puram Sector 5", state: "Delhi" },
+      { id: 31, name: "Gurudwara Sri Guru Singh Sabha, Munirka", state: "Delhi" },
+      { id: 32, name: "Gurudwara Sri Guru Singh Sabha, Gautam Nagar", state: "Delhi" },
+      { id: 33, name: "Gurudwara Sri Guru Singh Sabha, No. 7, Govindpuri", state: "Delhi" },
+      { id: 34, name: "Gurudwara Kalgidhar, Sangam Vihar", state: "Delhi" },
+      { id: 35, name: "Gurudwara Sri Guru Singh Sabha, Shahdara - Teliwara", state: "Delhi" },
+      { id: 36, name: "Bhai Lalo Ji Gurudwara, Geeta Colony, 12 Block", state: "Delhi" },
+      { id: 37, name: "Gurudwara Sri Guru Singh Sabha, Geeta Colony, 10 Block", state: "Delhi" },
+      { id: 38, name: "Gurudwara Sri Guru Singh Sabha, Maila Colony, Gandhi Nagar", state: "Delhi" },
+      { id: 39, name: "Gurudwara Sri Guru Singh Sabha, Vaishali, Sector-2", state: "Uttar Pradesh" },
+      { id: 40, name: "Gurudwara Sri Guru Singh Sabha, Prithvi Park, Sahibpura", state: "Delhi" },
+      { id: 41, name: "Lubana Gurudwara, Tilak Nagar", state: "Delhi" },
+      { id: 42, name: "Gurudwara Sri Guru Singh Sabha, South Ex, Leela Ram Market", state: "Delhi" },
+      { id: 43, name: "Gurudwara Firozpur, Zira Pind", state: "Punjab" },
+      { id: 44, name: "Panchayati Gurudwara, D-Block Faridabad", state: "Haryana" },
+      { id: 45, name: "Gurudwara Sri Guru Singh Sabha, Molarband Village, Badarpur", state: "Delhi" },
+      { id: 46, name: "Gurudwara Sri Guru Singh Sabha, Garhi Village", state: "Delhi" },
+      { id: 47, name: "20-Block Pishori Gurudwara", state: "Delhi" },
+      { id: 48, name: "Sanatan Dharam Mandir, Model Town, Panipat", state: "Haryana" },
+      { id: 49, name: "Mandir Multan Nagar Camp", state: "Delhi" },
+      { id: 50, name: "Mandir Sudarshan Park", state: "Delhi" },
+      { id: 51, name: "Sai Mandir, Nihal Vihar", state: "Delhi" },
+      { id: 52, name: "Ramgarhia Gurudwara, Hari Nagar", state: "Delhi" },
+      { id: 53, name: "Gurudwara Sri Guru Singh Sabha, C-Block, Hari Nagar", state: "Delhi" },
+      { id: 54, name: "Gurudwara Sri Guru Singh Sabha, Janakpuri A-2 Block", state: "Delhi" },
+      { id: 55, name: "Gurudwara Sri Guru Singh Sabha, Andha Mughal, Pratap Nagar", state: "Delhi" },
+      { id: 56, name: "Gurudwara Sri Guru Singh Sabha, Sant Nagar Extension", state: "Delhi" },
+      { id: 57, name: "Gurudwara Sri Guru Singh Sabha, Patel Nagar / Rajendra Nagar", state: "Delhi" },
+      { id: 58, name: "Gurudwara Shah Ji Maharaj, Sukhdham, Alwar", state: "Rajasthan" },
+      { id: 59, name: "Gurudwara Sri Guru Singh Sabha, Ramgarh", state: "Rajasthan" },
+      { id: 60, name: "Gurudwara Sri Guru Singh Sabha, Scheme-2, Alwar", state: "Rajasthan" },
+      { id: 61, name: "Ashram, Budhpur Village", state: "Delhi" },
+      { id: 62, name: "Gurudwara Dalu Wala, Majbatta", state: "Uttarakhand" },
+      { id: 63, name: "Gurudwara Sri Guru Singh Sabha, Shivaji Colony, Rohtak", state: "Haryana" },
+      { id: 64, name: "Gurudwara Sri Guru Singh Sabha, Sagarpur", state: "Delhi" },
+      { id: 65, name: "Shri Guru Ravi Das Mandir, K-Block, Mangolpuri", state: "Delhi" },
+      { id: 66, name: "Gurudwara Sri Guru Singh Sabha, Baljit Nagar, Gali No. 2", state: "Delhi" }
+    ];
+
+    const FEEDBACKS = [
+      { name: "Dera Baba Jodh Sachiyar Committee", project: "Gumbad & Marble Work, Panipat", rating: 5, msg: "Awarded Best Gumbad Specialization in 2012. Exceptional dome craftsmanship and dedication." },
+      { name: "Rajesh Sharma", project: "3 BHK Builder Floor, Mohan Garden", rating: 5, msg: "Smooth booking, transparent pricing, and full help with home loan paperwork." }
+    ];
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.remove("hidden");
+      setTimeout(() => t.classList.add("hidden"), 3500);
+    }
+
+    // Mobile Menu
+    document.getElementById("mobileMenuBtn").addEventListener("click", () => {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    });
+
+    // Gallery Rendering & Filtering
+    let activeFilter = "all";
+    function renderGallery() {
+      const grid = document.getElementById("photoGrid");
+      const items = activeFilter === "all" ? PHOTOS : PHOTOS.filter(p => p.cat === activeFilter);
+      grid.innerHTML = items.map((p, idx) => `
+        <button type="button" data-idx="${PHOTOS.indexOf(p)}" class="gallery-card group text-left overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm hover:shadow-md transition">
+          <div class="overflow-hidden h-56 w-full">
+            <img src="${p.src}" alt="${p.title}" class="h-full w-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" />
+          </div>
+          <div class="p-3.5 bg-white">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-gold-600">${p.cat === 'sacred' ? 'Sacred Architecture' : 'Residential Project'}</span>
+            <p class="mt-0.5 text-sm font-semibold text-navy-900 line-clamp-2">${p.title}</p>
+          </div>
+        </button>
+      `).join("");
+
+      grid.querySelectorAll(".gallery-card").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const item = PHOTOS[Number(btn.dataset.idx)];
+          document.getElementById("lightboxImg").src = item.src;
+          document.getElementById("lightboxCaption").innerHTML = item.title;
+          const lb = document.getElementById("lightbox");
+          lb.classList.remove("hidden");
+          lb.classList.add("flex");
+        });
+      });
+    }
+
+    document.querySelectorAll(".gallery-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        activeFilter = tab.dataset.filter;
+        document.querySelectorAll(".gallery-tab").forEach(b => {
+          b.className = "gallery-tab rounded-lg bg-slate-100 px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-200";
+        });
+        tab.className = "gallery-tab rounded-lg bg-navy-900 px-3.5 py-2 text-xs font-semibold text-white";
+        renderGallery();
+      });
+    });
+
+    document.getElementById("lightboxClose").addEventListener("click", () => {
+      const lb = document.getElementById("lightbox");
+      lb.classList.add("hidden");
+      lb.classList.remove("flex");
+    });
+
+    // Landmarks Search & Filter
+    function renderLandmarks() {
+      const q = document.getElementById("projectSearch").value.trim().toLowerCase();
+      const st = document.getElementById("stateFilter").value;
+      const filtered = LANDMARKS.filter(l => {
+        const matchState = st === "all" || l.state === st;
+        const matchQuery = !q || l.name.toLowerCase().includes(q) || l.state.toLowerCase().includes(q);
+        return matchState && matchQuery;
+      });
+      document.getElementById("landmarkCount").textContent = `Showing ${filtered.length} of ${LANDMARKS.length} completed projects`;
+      document.getElementById("landmarkList").innerHTML = filtered.map(l => `
+        <div class="rounded-lg bg-white border border-slate-200 px-3 py-2.5 text-xs flex items-start justify-between gap-2">
+          <span class="font-medium text-slate-800">${l.id}. ${l.name}</span>
+          <span class="shrink-0 rounded bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-navy-900">${l.state}</span>
+        </div>
+      `).join("");
+    }
+    document.getElementById("projectSearch").addEventListener("input", renderLandmarks);
+    document.getElementById("stateFilter").addEventListener("change", renderLandmarks);
+
+    // Requirement Analysis Finder
+    function updateAnalysis() {
+      const type = document.getElementById("reqType").value;
+      const loc = document.getElementById("reqLocation").value;
+      const size = document.getElementById("reqSize").value;
+      const status = document.getElementById("reqStatus").value;
+      const budget = document.getElementById("reqBudget").value.trim();
+
+      document.getElementById("analysisTitle").textContent = `${type} — ${loc}`;
+      document.getElementById("analysisDesc").textContent = `Looking for ${size} (${status})${budget ? ` with an estimated budget of ${budget}` : ""}. Our team will share matching options, site visit slots, and loan/investment guidance.`;
+
+      const waMsg = `Hello Arrosphire Infratech Pvt Ltd,%0A*Requirement Analysis:*%0A• Type: ${encodeURIComponent(type)}%0A• Location: ${encodeURIComponent(loc)}%0A• Size: ${encodeURIComponent(size)}%0A• Status: ${encodeURIComponent(status)}${budget ? `%0A• Budget: ${encodeURIComponent(budget)}` : ""}`;
+      document.getElementById("waAnalysisBtn").href = `https://wa.me/919910962033?text=${waMsg}`;
+    }
+
+    ["reqType", "reqLocation", "reqSize", "reqStatus", "reqBudget"].forEach(id => {
+      document.getElementById(id).addEventListener("change", updateAnalysis);
+      document.getElementById(id).addEventListener("input", updateAnalysis);
+    });
+
+    document.getElementById("fillEnquiryBtn").addEventListener("click", () => {
+      const type = document.getElementById("reqType").value;
+      const loc = document.getElementById("reqLocation").value;
+      const size = document.getElementById("reqSize").value;
+      const status = document.getElementById("reqStatus").value;
+      const budget = document.getElementById("reqBudget").value.trim();
+      document.getElementById("enqSubject").value = `${type} in ${loc} (${size})`;
+      document.getElementById("enqMsg").value = `Preference: ${status}${budget ? `, Budget: ${budget}` : ""}. Please share details and site visit availability.`;
+      document.getElementById("tabEnquiry").click();
+      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+      showToast("Requirement copied to Enquiry Form!");
+    });
+
+    // Contact Tabs & Forms
+    document.getElementById("tabEnquiry").addEventListener("click", () => {
+      document.getElementById("enquiryForm").classList.remove("hidden");
+      document.getElementById("feedbackForm").classList.add("hidden");
+      document.getElementById("tabEnquiry").className = "rounded-lg bg-navy-900 px-4 py-2 text-sm font-semibold text-white";
+      document.getElementById("tabFeedback").className = "rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-200";
+    });
+
+    document.getElementById("tabFeedback").addEventListener("click", () => {
+      document.getElementById("feedbackForm").classList.remove("hidden");
+      document.getElementById("enquiryForm").classList.add("hidden");
+      document.getElementById("tabFeedback").className = "rounded-lg bg-navy-900 px-4 py-2 text-sm font-semibold text-white";
+      document.getElementById("tabEnquiry").className = "rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-200";
+    });
+
+    document.getElementById("enquiryForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("enqName").value.trim();
+      const phone = document.getElementById("enqPhone").value.trim();
+      const sub = document.getElementById("enqSubject").value.trim();
+      const msg = document.getElementById("enqMsg").value.trim();
+      const text = `New Website Enquiry:%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ASubject: ${encodeURIComponent(sub)}%0ADetails: ${encodeURIComponent(msg)}`;
+      window.open(`https://wa.me/919910962033?text=${text}`, "_blank", "noopener,noreferrer");
+      showToast("Opening WhatsApp with your enquiry details!");
+    });
+
+    document.getElementById("emailEnquiryBtn").addEventListener("click", () => {
+      const name = document.getElementById("enqName").value.trim();
+      const phone = document.getElementById("enqPhone").value.trim();
+      const sub = document.getElementById("enqSubject").value.trim() || "Website Enquiry";
+      const msg = document.getElementById("enqMsg").value.trim();
+      const body = `Name: ${name}\nPhone: ${phone}\n\n${msg}`;
+      window.location.href = `mailto:arrosphireinfratechpvtltd1980@gmail.com?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+    });
+
+    function renderFeedbacks() {
+      document.getElementById("feedbackList").innerHTML = FEEDBACKS.map(f => `
+        <div class="rounded-xl bg-slate-50 border border-slate-200 p-3.5 text-xs">
+          <div class="flex items-center justify-between">
+            <strong class="text-navy-900">${f.name}</strong>
+            <span class="text-gold-600 font-bold">${"★".repeat(f.rating)}</span>
+          </div>
+          ${f.project ? `<p class="text-[11px] text-slate-500 mt-0.5">${f.project}</p>` : ""}
+          <p class="text-slate-700 mt-1.5 leading-relaxed">${f.msg}</p>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("feedbackForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      FEEDBACKS.unshift({
+        name: document.getElementById("fbName").value.trim(),
+        project: document.getElementById("fbProject").value.trim(),
+        rating: Number(document.getElementById("fbRating").value),
+        msg: document.getElementById("fbMsg").value.trim()
+      });
+      e.target.reset();
+      renderFeedbacks();
+      showToast("Thank you! Your feedback has been added.");
+    });
+
+    renderGallery();
+    renderLandmarks();
+    updateAnalysis();
+    renderFeedbacks();
+  </script>
+</body>
+</html>
